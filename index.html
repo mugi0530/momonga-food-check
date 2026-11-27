@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>モモンガ食事安全チェック</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Tesseract.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="index.html/モモンガさん.png" alt="モモンガ画像"width="500" height="500" class="header-image">
+            </div>
+            <h1>モモンガ食事安全チェック</h1>
+            <p class="subtitle">食品表示の画像をアップロードして、モモンガが安全に食べられるかチェック！</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <p>食品表示の画像をドラッグ＆ドロップ</p>
+                    <p class="or">または</p>
+                    <label for="fileInput" class="file-label">ファイルを選択</label>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                </div>
+                <div class="preview-container" id="previewContainer">
+                    <img id="previewImage" alt="プレビュー">
+                    <button id="removeImage" class="remove-btn">✕ 画像を削除</button>
+                </div>
+            </section>
+
+            <button id="analyzeBtn" class="analyze-btn" disabled>
+                <span class="btn-text">🔍 成分を解析する</span>
+                <span class="btn-loading">解析中...</span>
+            </button>
+
+            <!-- テキスト手動入力セクション -->
+            <section class="manual-input-section" id="manualInputSection">
+                <h3>📝 成分を手動入力</h3>
+                <p>画像が読み込めない場合は、成分表示のテキストを直接入力してください：</p>
+                <textarea 
+                    id="manualTextInput" 
+                    class="manual-textarea"
+                    placeholder="例: いちご、砂糖、大豆油、食塩、酵母、ビタミン..."
+                    rows="5"></textarea>
+                <div class="manual-input-buttons">
+                    <button id="manualAnalyzeBtn" class="analyze-btn">🔍 手動入力で解析</button>
+                </div>
+            </section>
+
+            <section class="result-section" id="resultSection">
+                <div class="result-card" id="resultCard">
+                    <div class="result-icon" id="resultIcon"></div>
+                    <h2 id="resultTitle"></h2>
+                    <p id="resultMessage"></p>
+                </div>
+
+                <div class="dangerous-section" id="dangerousSection">
+                    <h3>⚠️ 絶対NG</h3>
+                    <div class="dangerous-list" id="dangerousList"></div>
+                </div>
+
+                <div class="safe-section" id="safeSection">
+                    <h3>⚠️ 少量ならOK</h3>
+                    <div class="safe-list" id="safeList"></div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h3>📚 モモンガが食べられないもの一覧</h3>
+                <div class="info-grid">
+                    <div class="info-card danger">
+                        <h4>🚫 絶対NG</h4>
+                        <ul>
+                           
+<li>チョコ</li>
+<li>ココア</li>
+
+<li>カフェイン</li>
+
+<li>アルコール</li>
+
+<li>紅茶</li>
+<li>緑茶</li>
+<li>ウーロン茶</li>
+<li>抹茶</li>
+
+<li>ネギ類（玉ねぎ、長ネギ、ニラ、ニンニク等）</li>
+
+<li>アボカド</li>
+
+<li>人の加工食品</li>
+
+
+<li>らっきょう</li>
+
+<li>エシャロット</li>
+
+<li>生の豆</li>
+
+<li>生肉・生卵</li>
+
+<li>ジャガイモの芽と緑の皮</li>
+
+<li>トマトのヘタ茎</li>
+
+<li>熟れていない果物</li>
+
+<li>果物の種子</li>
+
+</li>
+</li>
+
+
+
+                        </ul>
+                    </div>
+                    <div class="info-card caution">
+                        <h4>⚠️ 少量なら可または商品によっては可</h4>
+                        <ul>
+                            <li>乳製品（牛乳、チーズ、ヨーグルトなど）</li>
+                            <li>ナッツ類（アーモンド、カシューナッツなど）</li>
+                            <li>ほうれん草</li>
+                            <li>とうもろこし</li> 
+                            <li>レタス</li> 
+                            <li>果物全般</li>
+                            <li>食塩、砂糖</li>
+
+                        
+                            </li>
+                    
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <footer>
+            <p>⚠️ このツールは参考情報です。詳しくは獣医師に相談するか他サイトをご確認ください。</p>
+            <p>🐿️ 宇久高校二年 © 2026</p>
+        </footer>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>画像を解析中...</p>
+            <p class="loading-sub" id="loadingStatus">OCRエンジンを準備しています</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
